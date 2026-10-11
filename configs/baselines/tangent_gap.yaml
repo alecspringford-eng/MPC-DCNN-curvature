@@ -1,0 +1,20 @@
+model:
+  g: {hidden_width: 72, depth: 1}
+  h: {hidden_width: 104, depth: 1}
+
+curvature:
+  mode: tangent_gap
+  lambda_h: 0.015662356447891185
+  sigma: 0.029210969232162008
+  n_pairs: 2
+
+training:
+  batch_size: 64
+  optimizer: adam
+  lr: 0.007725831714587859
+  warmup_epochs: 2
+  patience: 19
+  weight_decay: 0.0071459592270006235
+
+logging:
+  run_name: baseline_tangent_gap

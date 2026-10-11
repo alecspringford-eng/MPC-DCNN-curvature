@@ -1,0 +1,40 @@
+data:
+  raw_dir: data/pvtol
+  input_column: u1
+  output_column: alpha
+  target_column: ydd
+  target_offset: 0
+  n_state_history: 1
+  n_control_history: 1
+  horizon: 1
+
+closed_loop:
+  plant: pvtol
+  u_min: -10.0
+  u_max: 10.0
+  du_max: 1000000.0
+
+ccp:
+  max_iters: 15
+
+model:
+  g: {hidden_width: 40, depth: 1}
+  h: {hidden_width: 88, depth: 2}
+
+curvature:
+  mode: smoothhess_trace
+  target: both
+  lambda_h: 0.00040755964400728694
+  sigma: 0.2184597421351558
+  n_pairs: 2
+
+training:
+  batch_size: 128
+  optimizer: adam
+  lr: 0.00534516611064682
+  warmup_epochs: 2
+  patience: 30
+  weight_decay: 0.007751328233611146
+
+logging:
+  run_name: baseline_pvtol_smoothhess_trace_target_both

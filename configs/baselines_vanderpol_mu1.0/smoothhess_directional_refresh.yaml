@@ -1,0 +1,32 @@
+data:
+  raw_dir: data/vanderpol/mu_1.0
+
+closed_loop:
+  plant: vanderpol
+  plant_kwargs: {mu: 1.0, dt: 0.05}
+
+ccp:
+  max_iters: 15
+
+model:
+  g: {hidden_width: 88, depth: 3}
+  h: {hidden_width: 104, depth: 1}
+
+curvature:
+  mode: smoothhess_directional
+  lambda_h: 2.902652141826391
+  sigma: 0.08616793633808113
+  n_pairs: 8
+  direction_refresh_every_n_epochs: 5
+  direction_n_solves: 16
+
+training:
+  batch_size: 1024
+  optimizer: adam
+  lr: 0.004878360603452143
+  warmup_epochs: 9
+  patience: 5
+  weight_decay: 0.005107473025775657
+
+logging:
+  run_name: baseline_vanderpol_mu1.0_smoothhess_directional_refresh

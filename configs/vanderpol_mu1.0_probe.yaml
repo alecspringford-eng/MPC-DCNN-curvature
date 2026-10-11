@@ -1,0 +1,19 @@
+data:
+  raw_dir: data/vanderpol/mu_1.0
+
+closed_loop:
+  plant: vanderpol
+  plant_kwargs: {mu: 1.0, dt: 0.05}
+
+activation: {}
+training:
+  device: cpu
+curvature:
+  mode: tangent_gap
+  target: both
+
+ccp:
+  max_iters: 15
+
+logging:
+  run_name: vanderpol_mu1.0_probe

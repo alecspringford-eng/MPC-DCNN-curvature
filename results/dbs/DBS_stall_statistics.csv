@@ -1,0 +1,4 @@
+arm,stalls,n,stall_rate_pct,abs_reduction,rel_reduction_pct
+baseline,165,4000,4.125,0,0.0
+LOW 0.25,373,4000,9.325,-208,-126.06060606060608
+HIGH 0.788,56,4000,1.4000000000000001,109,66.06060606060606

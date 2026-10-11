@@ -1,0 +1,39 @@
+data:
+  raw_dir: data/unicycle
+  input_column: v
+  output_column: theta
+  target_column: ydot
+  target_offset: 0
+  n_state_history: 1
+  n_control_history: 1
+  horizon: 1
+
+closed_loop:
+  plant: unicycle
+  u_min: -10.0
+  u_max: 10.0
+  du_max: 1000000.0
+
+ccp:
+  max_iters: 15
+
+model:
+  g: {hidden_width: 88, depth: 2}
+  h: {hidden_width: 16, depth: 3}
+
+curvature:
+  mode: hybrid
+  lambda_h: 0.004016986062226069
+  sigma: 0.04922010408150266
+  n_pairs: 2
+
+training:
+  batch_size: 64
+  optimizer: adam
+  lr: 0.0005924870051994319
+  warmup_epochs: 1
+  patience: 22
+  weight_decay: 0.003867353463005374
+
+logging:
+  run_name: baseline_unicycle_hybrid

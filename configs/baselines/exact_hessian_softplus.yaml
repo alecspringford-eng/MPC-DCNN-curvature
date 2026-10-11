@@ -1,0 +1,31 @@
+model:
+  g: {hidden_width: 72, depth: 3}
+  h: {hidden_width: 8, depth: 3}
+
+activation:
+  kind: softplus
+  swap_to_relu_after_training: true
+  beta_schedule:
+    type: multiplicative
+    mult_beta_init: 5.0
+    mult_r: 1.1543709029825258
+    mult_every_n_epochs: 5
+  curvature_decay:
+    type: exponential
+    c: 0.007858324745628387
+
+curvature:
+  mode: exact_hessian
+  target: both
+  lambda_h: 0.1378802135751667
+
+training:
+  batch_size: 256
+  optimizer: adam
+  lr: 0.00578918197982995
+  warmup_epochs: 2
+  patience: 14
+  weight_decay: 0.004845229851910214
+
+logging:
+  run_name: baseline_exact_hessian_softplus

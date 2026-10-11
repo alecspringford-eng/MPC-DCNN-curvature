@@ -1,0 +1,39 @@
+data:
+  raw_dir: data/unicycle
+  input_column: v
+  output_column: theta
+  target_column: ydot
+  target_offset: 0
+  n_state_history: 1
+  n_control_history: 1
+  horizon: 1
+
+closed_loop:
+  plant: unicycle
+  u_min: -10.0
+  u_max: 10.0
+  du_max: 1000000.0
+
+ccp:
+  max_iters: 15
+
+model:
+  g: {hidden_width: 24, depth: 3}
+  h: {hidden_width: 96, depth: 3}
+
+curvature:
+  mode: smoothhess_directional
+  lambda_h: 0.7183758655813989
+  sigma: 0.024440678788136116
+  n_pairs: 4
+
+training:
+  batch_size: 64
+  optimizer: adam
+  lr: 2.2264204303769678e-05
+  warmup_epochs: 3
+  patience: 23
+  weight_decay: 0.006375574713552132
+
+logging:
+  run_name: baseline_unicycle_smoothhess_directional

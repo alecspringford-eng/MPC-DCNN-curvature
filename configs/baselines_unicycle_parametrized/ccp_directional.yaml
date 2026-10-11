@@ -1,0 +1,40 @@
+data:
+  raw_dir: data/unicycle
+  input_column: v
+  output_column: theta
+  target_column: ydot
+  target_offset: 0
+  n_state_history: 1
+  n_control_history: 1
+  horizon: 1
+
+closed_loop:
+  plant: unicycle
+  u_min: -10.0
+  u_max: 10.0
+  du_max: 1000000.0
+
+ccp:
+  max_iters: 15
+  solver: parametrized
+
+model:
+  g: {hidden_width: 48, depth: 1}
+  h: {hidden_width: 40, depth: 1}
+
+curvature:
+  mode: ccp_directional
+  lambda_h: 4.451314315649203
+  sigma: 0.17842401600508806
+  n_pairs: 6
+
+training:
+  batch_size: 256
+  optimizer: adamw
+  lr: 0.004115113049561088
+  warmup_epochs: 9
+  patience: 13
+  weight_decay: 0.0011005192452767675
+
+logging:
+  run_name: baseline_unicycle_parametrized_ccp_directional

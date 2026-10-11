@@ -1,0 +1,21 @@
+data:
+  raw_dir: data/pvtol
+  input_column: u1
+  output_column: alpha
+  target_column: zdd
+  target_offset: 0
+  n_state_history: 1
+  n_control_history: 1
+  horizon: 1
+
+closed_loop:
+  plant: pvtol
+  u_min: -10.0
+  u_max: 10.0
+  du_max: 1000000.0
+
+curvature:
+  mode: none
+
+logging:
+  run_name: pvtol_zdd_none

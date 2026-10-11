@@ -1,0 +1,40 @@
+data:
+  raw_dir: data/pvtol
+  input_column: u1
+  output_column: alpha
+  target_column: ydd
+  target_offset: 0
+  n_state_history: 1
+  n_control_history: 1
+  horizon: 1
+
+closed_loop:
+  plant: pvtol
+  u_min: -10.0
+  u_max: 10.0
+  du_max: 1000000.0
+
+ccp:
+  max_iters: 15
+
+model:
+  g: {hidden_width: 40, depth: 2}
+  h: {hidden_width: 24, depth: 1}
+
+curvature:
+  mode: hybrid
+  target: both
+  lambda_h: 0.0067890532716984855
+  sigma: 0.18087048877487225
+  n_pairs: 8
+
+training:
+  batch_size: 512
+  optimizer: adam
+  lr: 3.972110727381908e-05
+  warmup_epochs: 0
+  patience: 29
+  weight_decay: 0.009656320330745594
+
+logging:
+  run_name: baseline_pvtol_hybrid_target_both

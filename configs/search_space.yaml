@@ -1,0 +1,38 @@
+study:
+  name: dcnn_curvature_search
+  direction: ["minimize", "minimize"]
+  n_trials: 200
+  timeout_seconds: null
+  sampler: nsga2
+  pruner: median
+
+search_space:
+  model.g.hidden_width:   {kind: int, low: 8, high: 128, step: 8}
+  model.g.depth:          {kind: int, low: 1, high: 3}
+  model.h.hidden_width:   {kind: int, low: 8, high: 128, step: 8}
+  model.h.depth:          {kind: int, low: 1, high: 3}
+
+  activation.kind:                       {kind: categorical, choices: [relu, softplus]}
+  activation.beta_schedule.mult_beta_init: {kind: float, low: 1.0, high: 20.0, log: true}
+  activation.beta_schedule.mult_r:         {kind: float, low: 1.01, high: 2.0}
+  activation.curvature_decay.c:            {kind: float, low: 0.0, high: 0.2}
+
+  curvature.mode:         {kind: categorical, choices: [none, tangent_gap, smoothhess_trace, ccp_directional, hybrid, exact_hessian, jacobian_variation, smoothhess_directional]}
+  curvature.lambda_h:     {kind: float, low: 1.0e-4, high: 10.0, log: true}
+  curvature.sigma:        {kind: float, low: 0.02, high: 2.5, log: true}
+  curvature.n_pairs:      {kind: int, low: 2, high: 8, step: 2}
+  curvature.distribution: {kind: categorical, choices: [gaussian]}
+
+  training.lr:            {kind: float, low: 1.0e-5, high: 1.0e-2, log: true}
+  training.batch_size:    {kind: categorical, choices: [64, 128, 256, 512, 1024]}
+  training.warmup_epochs: {kind: int, low: 0, high: 10}
+  training.patience:      {kind: int, low: 5, high: 30}
+  training.weight_decay:  {kind: float, low: 0.0, high: 1.0e-2}
+  training.optimizer:     {kind: categorical, choices: [adam, adamw, sgd]}
+
+  data.n_state_history:   {kind: int, low: 5, high: 30}
+  data.n_control_history: {kind: int, low: 5, high: 30}
+
+pareto_selection:
+  max_val_loss_regression: 0.05
+  objective: maximize_curvature_reduction_within_budget

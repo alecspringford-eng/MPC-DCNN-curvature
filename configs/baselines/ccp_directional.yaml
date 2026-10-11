@@ -1,0 +1,21 @@
+model:
+  g: {hidden_width: 8, depth: 2}
+  h: {hidden_width: 32, depth: 2}
+
+curvature:
+  mode: ccp_directional
+  lambda_h: 0.0007444441903453081
+  sigma: 0.12990798006639812
+  n_pairs: 4
+  direction_refresh_every_n_epochs: 5
+
+training:
+  batch_size: 512
+  optimizer: adam
+  lr: 0.006459367085984857
+  warmup_epochs: 2
+  patience: 22
+  weight_decay: 0.008172222002012158
+
+logging:
+  run_name: baseline_ccp_directional

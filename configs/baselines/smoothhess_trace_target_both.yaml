@@ -1,0 +1,21 @@
+model:
+  g: {hidden_width: 48, depth: 3}
+  h: {hidden_width: 96, depth: 2}
+
+curvature:
+  mode: smoothhess_trace
+  target: both
+  lambda_h: 0.001322350388953719
+  sigma: 0.11575201233649335
+  n_pairs: 8
+
+training:
+  batch_size: 128
+  optimizer: adam
+  lr: 0.007715105777813051
+  warmup_epochs: 6
+  patience: 14
+  weight_decay: 0.0026520236768172545
+
+logging:
+  run_name: baseline_smoothhess_trace_target_both

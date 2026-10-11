@@ -1,0 +1,31 @@
+data:
+  raw_dir: data/vanderpol/mu_1.0
+
+closed_loop:
+  plant: vanderpol
+  plant_kwargs: {mu: 1.0, dt: 0.05}
+
+ccp:
+  max_iters: 15
+
+model:
+  g: {hidden_width: 40, depth: 1}
+  h: {hidden_width: 88, depth: 2}
+
+curvature:
+  mode: tangent_gap
+  target: both
+  lambda_h: 0.00040755964400728694
+  sigma: 0.2184597421351558
+  n_pairs: 2
+
+training:
+  batch_size: 128
+  optimizer: adam
+  lr: 0.00534516611064682
+  warmup_epochs: 2
+  patience: 30
+  weight_decay: 0.007751328233611146
+
+logging:
+  run_name: baseline_vanderpol_mu1.0_tangent_gap_target_both

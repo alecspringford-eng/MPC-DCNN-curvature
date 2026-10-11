@@ -1,0 +1,6 @@
+curvature:
+  mode: smoothhess_directional
+  target: both
+
+logging:
+  run_name: baseline_smoothhess_directional_target_both

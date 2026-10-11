@@ -1,0 +1,4 @@
+rescue_group,sum,count,pct
+both,150,152,98.6842105263158
+geometry_only,0,1,0.0
+safeguard_only,12,12,100.0

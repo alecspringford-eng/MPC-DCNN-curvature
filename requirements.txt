@@ -1,0 +1,13 @@
+# Runtime dependencies (mirrors pyproject.toml; uv.lock pins exact versions).
+# Install with: pip install -r requirements.txt && pip install -e .
+torch>=2.2
+numpy>=1.26
+pandas>=2.2
+pyyaml>=6.0
+optuna>=3.6
+cvxpy>=1.4
+cvxpylayers>=0.1.6
+matplotlib>=3.8
+tqdm>=4.66
+# Only needed by scripts/figures_dbs/ (provenance code, not runnable without raw DBS logs)
+scipy>=1.11

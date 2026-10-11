@@ -1,0 +1,17 @@
+model:
+  g: {hidden_width: 72, depth: 3}
+  h: {hidden_width: 8, depth: 3}
+
+curvature:
+  mode: none
+
+training:
+  batch_size: 256
+  optimizer: adam
+  lr: 0.00578918197982995
+  warmup_epochs: 2
+  patience: 14
+  weight_decay: 0.004845229851910214
+
+logging:
+  run_name: baseline_none

@@ -1,0 +1,82 @@
+seed: 42
+
+data:
+  raw_dir: "data/dbs_recordings"
+  runs:
+    system_identification:
+      glob: "system_id_*.csv"
+    controller_rollouts:
+      glob: "simple_controllers_*.csv"
+  input_column: "inputs"
+  output_column: "outputs"
+  n_state_history: 20
+  n_control_history: 20
+  horizon: 1
+  split_mode: by_run
+  val_fraction: 0.2
+  test_fraction: 0.0
+  split_seed: 42
+  standardize: true
+
+model:
+  g:
+    hidden_width: 32
+    depth: 1
+  h:
+    hidden_width: 32
+    depth: 1
+
+activation:
+  kind: relu
+  learnable_beta: false
+  beta_min: 0.5
+  lambda_beta: 0.0
+  swap_to_relu_after_training: false
+  finetune_epochs_fraction: 0.08
+  finetune_lr: 1.0e-4
+  beta_schedule:
+    type: staged
+    total_epochs: 100
+    staged_breakpoints: [0.0, 0.2, 0.4, 0.6, 0.8]
+    staged_betas: [5.0, 10.0, 20.0, 40.0, 80.0]
+    mult_r: 1.1
+    mult_every_n_epochs: 5
+    mult_beta_init: 5.0
+  curvature_decay:
+    type: exponential
+    c: 0.05
+
+curvature:
+  mode: tangent_gap
+  target: h
+  lambda_h: 0.03
+  lambda_g: 0.0
+  sigma: [0.05, 0.16, 0.5, 1.1]
+  n_pairs: 4
+  distribution: gaussian
+  antithetic: true
+  direction_refresh_every_n_epochs: 0
+  direction_n_solves: 8
+  regularization_sampling_mode: random
+  n_samples_per_batch: 256
+
+training:
+  epochs: 100
+  batch_size: 512
+  lr: 1.0e-3
+  warmup_epochs: 5
+  patience: 10
+  optimizer: adam
+  weight_decay: 0.0
+  device: auto
+  log_every_n_epochs: 1
+
+ccp:
+  max_iters: 50
+  tol: 1.0e-6
+
+logging:
+  results_dir: results
+  checkpoint_dir: experiments
+  run_name: null
+  save_curvature_diagnostics: true
